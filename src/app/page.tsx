@@ -334,30 +334,36 @@ export default function HomePage() {
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {tracks.map((track) => (
-              <Card
-                key={track.title}
-                className="border-zinc-200 hover:border-zinc-300 hover:shadow-md transition-all rounded-xl py-0 overflow-hidden"
-              >
-                <CardHeader className="pt-6">
-                  <div
-                    className={`h-11 w-11 rounded-xl ${track.bg} flex items-center justify-center mb-4`}
-                  >
-                    <track.icon className={`h-5 w-5 ${track.color}`} />
-                  </div>
-                  <CardTitle className="text-zinc-900 text-lg">{track.title}</CardTitle>
-                  <CardDescription className="text-zinc-500 leading-relaxed">
-                    {track.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="pb-6">
-                  <Badge variant="secondary" className="text-xs text-zinc-500">
-                    {track.count}
-                  </Badge>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="relative overflow-hidden">
+            {/* Fade edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-zinc-50 to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-zinc-50 to-transparent z-10 pointer-events-none" />
+
+            <div className="flex gap-5 animate-marquee hover:[animation-play-state:paused]">
+              {[...tracks, ...tracks].map((track, i) => (
+                <Card
+                  key={`${track.title}-${i}`}
+                  className="border-zinc-200 hover:border-zinc-300 hover:shadow-md transition-all rounded-xl py-0 overflow-hidden w-80 shrink-0"
+                >
+                  <CardHeader className="pt-6">
+                    <div
+                      className={`h-11 w-11 rounded-xl ${track.bg} flex items-center justify-center mb-4`}
+                    >
+                      <track.icon className={`h-5 w-5 ${track.color}`} />
+                    </div>
+                    <CardTitle className="text-zinc-900 text-lg">{track.title}</CardTitle>
+                    <CardDescription className="text-zinc-500 leading-relaxed">
+                      {track.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="pb-6">
+                    <Badge variant="secondary" className="text-xs text-zinc-500">
+                      {track.count}
+                    </Badge>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </section>
