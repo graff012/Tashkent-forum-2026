@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+  <g fill="none">
+    <circle cx="28" cy="30" r="18" fill="none" stroke="#00539F" stroke-width="2.5"/>
+    <path d="M16 30c0-8 5.5-14 12-14s12 6 12 14-5.5 14-12 14" stroke="#00539F" stroke-width="1.5"/>
+    <path d="M16 24h24M16 30h24M16 36h24" stroke="#00539F" stroke-width="1"/>
+    <text x="52" y="24" font-family="Arial,sans-serif" font-weight="800" font-size="13" fill="#00539F">IFC</text>
+    <text x="52" y="38" font-family="Arial,sans-serif" font-weight="400" font-size="9" fill="#666">World Bank Group</text>
+  </g>
+</svg>

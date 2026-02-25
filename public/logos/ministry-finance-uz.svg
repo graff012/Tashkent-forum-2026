@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+  <g fill="none">
+    <rect x="10" y="14" width="32" height="32" rx="4" fill="#0D47A1"/>
+    <path d="M18 34V26l4 4 4-4v8" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M30 26v8M33 26v8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M26 20h0" stroke="#C9A84C" stroke-width="3" stroke-linecap="round"/>
+    <text x="50" y="27" font-family="Arial,sans-serif" font-weight="700" font-size="10" fill="#0D47A1">Ministry of</text>
+    <text x="50" y="41" font-family="Arial,sans-serif" font-weight="400" font-size="10" fill="#0D47A1">Finance UZ</text>
+  </g>
+</svg>

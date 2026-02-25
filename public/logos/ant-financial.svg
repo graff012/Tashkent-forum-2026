@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+  <g fill="none">
+    <circle cx="26" cy="30" r="16" fill="#1677FF"/>
+    <path d="M18 28c3-5 8-7 12-4s4 9 0 13" stroke="#fff" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <circle cx="22" cy="24" r="1.5" fill="#fff"/>
+    <text x="48" y="27" font-family="Arial,sans-serif" font-weight="700" font-size="12" fill="#1677FF">Ant</text>
+    <text x="48" y="41" font-family="Arial,sans-serif" font-weight="400" font-size="10" fill="#666">Financial</text>
+  </g>
+</svg>

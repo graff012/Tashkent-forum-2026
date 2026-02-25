@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+  <g fill="none">
+    <rect x="8" y="12" width="36" height="36" rx="10" fill="#33CCCC"/>
+    <text x="26" y="36" font-family="Arial,sans-serif" font-weight="800" font-size="16" fill="#fff" text-anchor="middle">P</text>
+    <text x="52" y="34" font-family="Arial,sans-serif" font-weight="700" font-size="16" fill="#333">pay</text>
+    <text x="82" y="34" font-family="Arial,sans-serif" font-weight="700" font-size="16" fill="#33CCCC">me</text>
+  </g>
+</svg>
