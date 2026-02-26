@@ -36,6 +36,8 @@ const tracks = [
     count: "12 сессий",
     color: "text-blue-600",
     bg: "bg-blue-50",
+    stripe: "bg-blue-500",
+    border: "border-blue-200 hover:border-blue-400",
   },
   {
     icon: CreditCard,
@@ -45,6 +47,8 @@ const tracks = [
     count: "10 сессий",
     color: "text-violet-600",
     bg: "bg-violet-50",
+    stripe: "bg-violet-500",
+    border: "border-violet-200 hover:border-violet-400",
   },
   {
     icon: ShieldCheck,
@@ -54,6 +58,8 @@ const tracks = [
     count: "8 сессий",
     color: "text-emerald-600",
     bg: "bg-emerald-50",
+    stripe: "bg-emerald-500",
+    border: "border-emerald-200 hover:border-emerald-400",
   },
   {
     icon: TrendingUp,
@@ -63,6 +69,8 @@ const tracks = [
     count: "7 сессий",
     color: "text-amber-600",
     bg: "bg-amber-50",
+    stripe: "bg-amber-500",
+    border: "border-amber-200 hover:border-amber-400",
   },
   {
     icon: Coins,
@@ -72,6 +80,8 @@ const tracks = [
     count: "6 сессий",
     color: "text-teal-600",
     bg: "bg-teal-50",
+    stripe: "bg-teal-500",
+    border: "border-teal-200 hover:border-teal-400",
   },
   {
     icon: Network,
@@ -81,6 +91,8 @@ const tracks = [
     count: "9 сессий",
     color: "text-indigo-600",
     bg: "bg-indigo-50",
+    stripe: "bg-indigo-500",
+    border: "border-indigo-200 hover:border-indigo-400",
   },
 ];
 
@@ -343,9 +355,11 @@ export default function HomePage() {
               {[...tracks, ...tracks].map((track, i) => (
                 <Card
                   key={`${track.title}-${i}`}
-                  className="border-zinc-200 hover:border-zinc-300 hover:shadow-md transition-all rounded-xl py-0 overflow-hidden w-80 shrink-0"
+                  className={`${track.border} hover:shadow-md transition-all rounded-xl py-0 overflow-hidden w-80 shrink-0`}
                 >
-                  <CardHeader className="pt-6">
+                  {/* Colored top stripe */}
+                  <div className={`h-1 w-full ${track.stripe}`} />
+                  <CardHeader className="pt-5">
                     <div
                       className={`h-11 w-11 rounded-xl ${track.bg} flex items-center justify-center mb-4`}
                     >
@@ -357,7 +371,7 @@ export default function HomePage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="pb-6">
-                    <Badge variant="secondary" className="text-xs text-zinc-500">
+                    <Badge variant="secondary" className={`text-xs ${track.color} ${track.bg} border-0`}>
                       {track.count}
                     </Badge>
                   </CardContent>
@@ -439,46 +453,87 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Partner Tiers ── */}
+      {/* ── Partners ── */}
       <section className="bg-zinc-50 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <Badge variant="outline" className="mb-3 text-zinc-500 border-zinc-300">
-              Партнёры
-            </Badge>
-            <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
-              Партнёры форума
-            </h2>
-          </div>
-
-          <div className="space-y-10">
-            {partnerTiers.map((tier) => (
-              <div key={tier.tier}>
-                <p className="text-xs font-semibold text-zinc-400 uppercase tracking-widest text-center mb-5">
-                  {tier.tier}
-                </p>
-                <div className="flex flex-wrap items-center justify-center gap-4">
-                  {tier.partners.map((partner) => (
-                    <a
-                      key={partner.name}
-                      href={partner.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group/logo px-6 rounded-xl border border-zinc-200 bg-white flex items-center justify-center transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-md hover:border-zinc-300"
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={partner.logo}
-                        alt={partner.name}
-                        className={`${tier.logoHeight} w-auto object-contain grayscale opacity-60 transition-all duration-300 ease-out group-hover/logo:grayscale-0 group-hover/logo:opacity-100`}
-                      />
-                    </a>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="text-center mb-14 px-4">
+          <Badge variant="outline" className="mb-3 text-zinc-500 border-zinc-300">
+            Партнёры
+          </Badge>
+          <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
+            Партнёры форума
+          </h2>
         </div>
+
+        {(() => {
+          const all = partnerTiers.flatMap((t) => t.partners);
+          // 3 rows with offset starts so each row shows different logos at viewport entry
+          const row1 = all;                                        // 0..14
+          const row2 = [...all.slice(5), ...all.slice(0, 5)];     // 5..14, 0..4
+          const row3 = [...all.slice(10), ...all.slice(0, 10)];   // 10..14, 0..9
+
+          // Cycling border colors — one per partner slot
+          const borderColors = [
+            "border-blue-200   hover:border-blue-400",
+            "border-violet-200 hover:border-violet-400",
+            "border-emerald-200 hover:border-emerald-400",
+            "border-amber-200  hover:border-amber-400",
+            "border-teal-200   hover:border-teal-400",
+            "border-indigo-200 hover:border-indigo-400",
+            "border-rose-200   hover:border-rose-400",
+            "border-orange-200 hover:border-orange-400",
+            "border-cyan-200   hover:border-cyan-400",
+            "border-pink-200   hover:border-pink-400",
+            "border-purple-200 hover:border-purple-400",
+            "border-green-200  hover:border-green-400",
+            "border-red-200    hover:border-red-400",
+            "border-yellow-200 hover:border-yellow-400",
+            "border-lime-200   hover:border-lime-400",
+          ];
+
+          const logoCard = (partner: Partner, key: string, colorIdx: number) => (
+            <a
+              key={key}
+              href={partner.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`h-16 px-8 rounded-xl border bg-white flex items-center justify-center shrink-0 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-md ${borderColors[colorIdx % borderColors.length]}`}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={partner.logo}
+                alt={partner.name}
+                className="h-10 w-auto object-contain transition-all duration-300 ease-out"
+              />
+            </a>
+          );
+
+          const rows = [
+            { data: row1, animation: "animate-marquee",         delay: "0s" },
+            { data: row2, animation: "animate-marquee-reverse", delay: "0s" },
+            { data: row3, animation: "animate-marquee",         delay: "2s" },
+          ];
+
+          return (
+            <div className="space-y-4">
+              {rows.map(({ data, animation, delay }, rowIdx) => (
+                <div key={rowIdx} className="relative overflow-hidden">
+                  {/* Fade edges */}
+                  <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-zinc-50 to-transparent z-10 pointer-events-none" />
+                  <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-zinc-50 to-transparent z-10 pointer-events-none" />
+
+                  <div
+                    className={`flex gap-4 ${animation} hover:[animation-play-state:paused]`}
+                    style={{ animationDelay: delay }}
+                  >
+                    {[...data, ...data].map((partner, i) =>
+                      logoCard(partner, `${rowIdx}-${partner.name}-${i}`, all.findIndex(p => p.name === partner.name))
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          );
+        })()}
       </section>
 
       {/* ── Announcements ── */}
