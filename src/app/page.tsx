@@ -11,21 +11,13 @@ import {
   Globe2,
   ShieldCheck,
   TrendingUp,
-  Layers,
   Coins,
   Network,
   CalendarDays,
   MapPin,
-  Users,
-  Mic2,
 } from "lucide-react";
+import { StatsSection } from "@/components/stats-section";
 
-const stats = [
-  { value: "3 000+", label: "Участников", icon: Users },
-  { value: "50+", label: "Спикеров", icon: Mic2 },
-  { value: "30+", label: "Стран", icon: Globe2 },
-  { value: "6", label: "Треков", icon: Layers },
-];
 
 const tracks = [
   {
@@ -304,24 +296,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Stats ── */}
-      <section className="bg-white border-b border-zinc-200">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-zinc-200">
-            {stats.map(({ value, label, icon: Icon }) => (
-              <div
-                key={label}
-                className="flex flex-col items-center justify-center py-10 px-6 text-center"
-              >
-                <div className="h-10 w-10 rounded-full bg-zinc-100 flex items-center justify-center mb-3">
-                  <Icon className="h-5 w-5 text-zinc-500" />
-                </div>
-                <p className="text-3xl font-bold text-zinc-900 tracking-tight">{value}</p>
-                <p className="text-sm text-zinc-500 mt-1">{label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <StatsSection />
 
       {/* ── Tracks ── */}
       <section className="bg-zinc-50 py-20">
