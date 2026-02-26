@@ -205,43 +205,73 @@ export default function RegisterPage() {
         )}
 
         {/* Ticket types */}
-        <div className="mb-8">
-          <h2 className="text-lg font-semibold text-zinc-900 mb-4">
-            Выберите тип участия
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {ticketTypes.map((ticket) => (
-              <button
-                key={ticket.id}
-                onClick={() => setSelectedTicket(ticket.id)}
-                className={cn(
-                  "relative text-left p-5 rounded-xl border-2 transition-all",
-                  selectedTicket === ticket.id
-                    ? "border-pomegranate ring-2 ring-pomegranate/15 bg-white shadow-sm"
-                    : "border-zinc-200 bg-white hover:border-zinc-300"
-                )}
-              >
-                {ticket.highlight && (
-                  <span className="absolute top-3 right-3 text-[10px] font-bold bg-pomegranate text-white px-2 py-0.5 rounded-full uppercase tracking-wide">
-                    Популярно
-                  </span>
-                )}
-                <p className="font-bold text-zinc-900 text-base mb-1">
-                  {ticket.title}
-                </p>
-                <p className="text-2xl font-bold text-pomegranate mb-3">
-                  {ticket.price}
-                </p>
-                <ul className="space-y-1.5">
-                  {ticket.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-xs text-zinc-600">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 shrink-0 mt-0.5" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-              </button>
-            ))}
+        <div className="mb-10">
+          <div className="bg-zinc-950 rounded-3xl px-6 py-10 sm:px-10">
+            <div className="text-center mb-8">
+              <p className="text-zinc-500 text-xs uppercase tracking-widest font-semibold mb-2">Участие</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white">Выберите формат</h2>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {ticketTypes.map((ticket) => {
+                const isSelected = selectedTicket === ticket.id;
+                const isHighlighted = !!ticket.highlight;
+                return (
+                  <button
+                    key={ticket.id}
+                    onClick={() => setSelectedTicket(ticket.id)}
+                    className={cn(
+                      "relative text-left p-6 rounded-2xl border-2 transition-all duration-200 flex flex-col",
+                      isSelected
+                        ? "border-pomegranate bg-zinc-900 shadow-2xl shadow-pomegranate/20 ring-4 ring-pomegranate/10"
+                        : isHighlighted
+                        ? "border-zinc-600 bg-zinc-900/80 hover:border-pomegranate/50"
+                        : "border-zinc-800 bg-zinc-900/60 hover:border-zinc-700"
+                    )}
+                  >
+                    {/* Popular badge */}
+                    {isHighlighted && (
+                      <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 text-[11px] font-bold bg-pomegranate text-white px-3 py-0.5 rounded-full uppercase tracking-wider whitespace-nowrap">
+                        Популярно
+                      </span>
+                    )}
+
+                    {/* Title */}
+                    <p className="text-zinc-400 text-xs font-semibold uppercase tracking-widest mb-3">
+                      {ticket.title}
+                    </p>
+
+                    {/* Price */}
+                    <p className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-none mb-0.5">
+                      {ticket.price}
+                    </p>
+                    <p className="text-xs text-zinc-600 mb-6">за участника</p>
+
+                    {/* Features */}
+                    <ul className="space-y-2.5 flex-1 mb-6">
+                      {ticket.features.map((f) => (
+                        <li key={f} className="flex items-start gap-2.5 text-sm text-zinc-400">
+                          <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* CTA pill */}
+                    <div
+                      className={cn(
+                        "w-full py-2.5 rounded-xl text-sm font-semibold text-center transition-all",
+                        isSelected
+                          ? "bg-pomegranate text-white"
+                          : "border border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-zinc-300"
+                      )}
+                    >
+                      {isSelected ? "Выбрано ✓" : "Выбрать"}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
